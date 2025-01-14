@@ -1,0 +1,74 @@
+#######################
+SSH Remote Server Setup
+#######################
+
+Setup a basic remote linux server and configure it to allow SSH.
+
+The goal of this project is to learn and practice the basics of Linux. 
+You are required to setup a remote linux server and configure it to allow SSH connections.
+
+Requirements:
+-------------
+
+You are required to setup a remote linux server and configure it to allow SSH connections.
+
+- You need to have a linux machine as a server
+- Create two new SSH key pairs and add them to your server.
+- You should be able to connect to your server using both SSH keys.
+
+You should be able to use the following command to connect to your server using both SSH keys.
+ssh -i <path-to-private-key> user@server-ip
+
+Also, look into setting up the configuration in ~/.ssh/config to allow you to connect to your server using the following command.
+ssh <alias>
+
+The only outcome of this project is that you should be able to SSH into your server using both SSH keys.
+
+
+====================================================================\
+Resolution :
+-------------
+
+- ssh carmel@10.0.073
+
+- On the computer terminal 
+
+   - run ssh-keygen -t rsa -b 4096 | /Users/carmeladja/.ssh/Devopskey1 / ~/.ssh/Devopskey1
+   - run ssh-keygen -t rsa -b 4096  | /Users/carmeladja/.ssh/Devopskey2 / ~/.ssh/Devopskey1
+
+- to add on the server 
+
+   - ssh-copy-id -i ~/.ssh/Devopskey1.pub carmel@10.0.0.73 |confirm by Yes to add 
+   - ssh-copy-id -i ~/.ssh/Devopskey2.pub carmel@10.0.0.73 |confirm by Yes to add 
+
+- connect to the server with public key 
+
+  - ssh carmel@10.0.0.73 | using carmelkey1 
+  - ssh carmel@10.0.0.73 | using carmelkey2
+
+- connect to the server 
+
+  - ssh -i ~/.ssh/Devopskey1 carmel@10.0.0.73
+  - ssh -i ~/.ssh/Devopskey2 carmel@10.0.0.73
+
+- For ssh <alias> connexion
+
+  - connect to terminal
+  - nano ~/.ssh/config 
+  - modify host by your server name / hostname by ip add/ identityfile by ~/.ssh/Devopskey1 or Devopskey1  
+ 
+Host myserverone
+  HostName 10.0.0.73
+  User carmel
+  IdentityFile ~/.ssh/Devopskey1 
+  Port 22
+
+Host myserver2
+  HostName 10.0.0.73
+  User carmel
+  IdentityFile ~/.ssh/Devopskey2
+  Port 22
+
+  - and save modifications
+  - run ssh myserverone / myserver2 
+

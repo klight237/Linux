@@ -1,0 +1,20 @@
+#################
+Simple Monitoring
+#################
+
+Set up a basic monitoring dashboard using Netdata.
+
+The goal of this project is to learn the basics of monitoring. It is to help you understand how to monitor the health of a system and how to set up a basic monitoring dashboard.
+
+Requirements:
+-------------
+
+In this project, you will set up a basic monitoring dashboard using Netdata. Netdata is a powerful, real-time performance and health monitoring tool for systems and applications.
+
+- Install Netdata on a Linux system.
+- Configure Netdata to monitor basic system metrics such as CPU, memory usage, and disk I/O.
+- Access the Netdata dashboard through a web browser.
+- Customize at least one aspect of the dashboard (e.g., add a new chart or modify an existing one).
+- Set up an alert for a specific metric (e.g., CPU usage above 80%).
+
+Once you have finished this project, you will have a basic understanding of how to set up a monitoring dashboard and how to automate the setup and testing processes. We will revisit the topic of monitoring and look at more advanced tools and techniques in later projects.
