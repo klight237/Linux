@@ -1,0 +1,51 @@
+static server
+-------------
+
+1/crepare Linux Server
+--------------------
+ssh user@server-ip
+sudo apt update
+sudo apt upgrade -y
+
+2/Install nginx
+-------------
+sudo apt install nginx -y
+sudo systemctl start nginx 
+sudo systemctl enable nginx
+Sudo systemctl status nginx >>>> active and running
+
+3/create the static site
+-------------------------
+sudo mkdir -p /var/www/html/siteweb  >>> directory to save siteweb
+sudo nano /var/www/html/siteweb/index.html
+
+4/configure nginx to serve the static site
+------------------------------------------
+sudo nano /etc/nginx/sites-available/siteweb
+ server {
+    listen 80;
+    server_name server-ip;
+
+    root /var/www/html/siteweb;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+Ctrl+O; enter, Ctrl+X
+
+5/create link to enable the site
+---------------------------------------
+sudo ln -s /etc/nginx/sites-available/siteweb /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl restart nginx
+
+rsync to deploy Changes
+-----------------------
+rsync -avz /path/to/local/site/user@your_server_ip:/var/www/html/
+
+Step 6: Access Your Static Site
+--------------------------------
+Open a web browser and navigate to http://your_server_ip to see your site.
+
